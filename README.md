@@ -46,7 +46,6 @@ karma start --reporters prettyBrowserReport
 
 ----
 
-For more information on Karma see the [homepage].
 
 [Karma Test Runner]: https://github.com/karma-runner/karma
 [karma-junit-reporter plugin]: https://github.com/karma-runner/karma-junit-reporter
