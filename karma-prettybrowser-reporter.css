@@ -1,0 +1,94 @@
+
+html,
+
+body {
+	font-family:Arial,sans-serif;
+	margin:0;
+	padding:10px 40px;
+}
+
+#browserPies {
+    width: 100%;
+    border: none;
+    overflow: hidden; /* will contain if #first is longer than #second */
+}
+#browserPiesLeft {
+    width: 50%;
+    float:left; /* add this */
+    border: none;
+}
+#browserPiesRight {
+	width: 50%;
+    border: none;
+    overflow: hidden; /* if you don't want #second to wrap below #first */
+}
+
+#browsersTable {
+	width:100%;
+	float:left;
+	overflow:hidden;
+	display:inline-block;
+	height:auto;
+	min-height:30px;
+	height:auto !important;
+	height:30px;
+}
+
+
+h1 {
+
+}
+
+table.browsers {
+	width:100%;
+	margin-top:20px;
+	margin-bottom:20px;
+	table-layout:fixed;
+}
+
+table.specs {
+	width: 100%;
+	padding: 5px 5px 5px 5px;
+	table-layout: fixed;
+}
+
+tr.header {
+	background:#ddd;
+	font-weight:bold;
+	border-bottom:none;
+}
+
+tr.pass td {
+	color:#003b07;
+	background:#86e191;
+}
+
+tr.skip td {
+	color:#7d3a00;
+	background:#ffd24a;
+}
+
+tr.fail td {
+	color:#5e0e00;
+	background:#ff9c8a;
+}
+
+td {
+	border-top:none;
+	border-left:1px black solid;
+	border-bottom:1px black solid;
+	border-right:none;
+}
+
+td:first-child 	{
+	width: 60%;
+	padding-left: 5px;
+}
+
+td:last-child 	{
+	border-right:1px black solid;
+}
+
+tr:first-child td {
+	border-top:1px black solid;
+}

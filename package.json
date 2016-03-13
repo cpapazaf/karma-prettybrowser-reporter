@@ -1,0 +1,36 @@
+{
+  "name": "karma-prettybrowser-reporter",
+  "version": "0.0.1",
+  "description": "A Karma plugin. Report pretty browser results.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cpapazaf/karma-prettybrowser-reporter.git"
+  },
+  "keywords": [
+    "karma-plugin",
+    "karma-reporter",
+    "html"
+  ],
+  "author": {
+    "name": "Christos Papazafeiropoulos",
+    "email": "xpapazaf@live.com"
+  },
+  "dependencies": {
+    "xmlbuilder": "3.1.0"
+  },
+  "peerDependencies": {
+    "karma": ">=0.10"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-npm": "~0.0.2",
+    "grunt-bump": "~0.0.7",
+    "grunt-auto-release": "~0.0.2"
+  },
+  "contributors": []
+}
