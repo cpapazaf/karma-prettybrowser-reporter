@@ -85,17 +85,17 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
         specs = failedFirstSpecs(browserInfo.specs);
       } 
 
-      for (var spec in browserInfo.specs) {
+      for (var spec in specs) {
         //var spec = JSON.stringify(spec);
-        var specStatus = browserInfo.specs[spec].skipped ? 'skip' : (browserInfo.specs[spec].success ? 'pass' : 'fail');
-        if(!showPassed && browserInfo.specs[spec].success) {
+        var specStatus = specs[spec].skipped ? 'skip' : (specs[spec].success ? 'pass' : 'fail');
+        if(!showPassed && specs[spec].success) {
           continue;
         }
 
         var space_table_row = space_table.ele('tr', {class:specStatus});
-        var col = space_table_row.ele('td', {}, browserInfo.specs[spec].description);
-        if (!browserInfo.specs[spec].success) {
-          browserInfo.specs[spec].errorLog.forEach(function(err) {
+        var col = space_table_row.ele('td', {}, specs[spec].description);
+        if (!specs[spec].success) {
+          specs[spec].errorLog.forEach(function(err) {
             col.raw('<br />' + formatError(err).replace(/</g,'&lt;').replace(/>/g,'&gt;'));
           });
         }
