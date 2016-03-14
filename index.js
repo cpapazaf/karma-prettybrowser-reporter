@@ -9,6 +9,8 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
 
   var outputFile = config.outputFile;
   var title = config.title || 'Browser Test Results';
+  var showPassed = config.showPassed || false;
+  var showFailedFirst = config.showFailedFirst || true;
 
   var cssFile = 'karma-prettybrowser-reporter.css';
   var jsFile = 'karma-prettybrowser-reporter.js';
@@ -51,8 +53,8 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
 
   var printSuites = function() {
     browserPies = body.ele('div', {id: 'browserPies'});
-    generalLeft = browserPies.ele('div', {id: 'browserPiesLeft'}, 'left');
-    generalRight = browserPies.ele('div', {id: 'browserPiesRight'}, 'right');
+    generalLeft = browserPies.ele('div', {id: 'browserPiesLeft'}, '');
+    generalRight = browserPies.ele('div', {id: 'browserPiesRight'}, '');
 
     browsersSide = body.ele('div', {id: 'browsersTable'});
     
@@ -65,7 +67,7 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
 
     for (var browserId in suites) {
       var browserInfo = suites[browserId];
-      var browserFail = browserInfo.skipped ? 'skip' : (browserInfo.success ? 'pass' : 'fail');
+      var browserFail = (browserInfo.success ? (browserInfo.skipped ? 'skip' : 'pass') : 'fail');
       var browser_row = browserTable.ele('tr', {class:browserFail, id:browserId});
       browser_row.ele('td', {}, browserInfo.browserName);
       
@@ -77,10 +79,20 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
       var browser_row_specs = browserTable.ele('tr', {});
       var specs_table_row = browser_row_specs.ele('td', {colspan:"6", class:'spec'});
       var space_table = specs_table_row.ele('table',{cellspacing:'0', cellpadding:'0', border:'0', class:'specs', id:browserId});
+      
+      var specs = browserInfo.specs;
+      if(showFailedFirst) {
+        specs = failedFirstSpecs(browserInfo.specs);
+      } 
+
       for (var spec in browserInfo.specs) {
         //var spec = JSON.stringify(spec);
-        var specFail = browserInfo.specs[spec].skipped ? 'skip' : (browserInfo.specs[spec].success ? 'pass' : 'fail');
-        var space_table_row = space_table.ele('tr', {class:specFail});
+        var specStatus = browserInfo.specs[spec].skipped ? 'skip' : (browserInfo.specs[spec].success ? 'pass' : 'fail');
+        if(!showPassed && browserInfo.specs[spec].success) {
+          continue;
+        }
+
+        var space_table_row = space_table.ele('tr', {class:specStatus});
         var col = space_table_row.ele('td', {}, browserInfo.specs[spec].description);
         if (!browserInfo.specs[spec].success) {
           browserInfo.specs[spec].errorLog.forEach(function(err) {
@@ -90,6 +102,22 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
       }
     }
   };
+
+  var failedFirstSpecs = function(specs) {
+    var red = [];
+    var yellow = [];
+    var green = [];
+    for (var spec in specs) {
+      if(specs[spec].skipped) {
+        yellow.push(spec);
+      } else if (specs[spec].success) {
+        green.push(spec);
+      } else {
+        red.push(spec);
+      }
+    }
+    return red.push.apply(red, yellow, green);
+  }
 
   this.adapters = [function(msg) {
     allMessages.push(msg);

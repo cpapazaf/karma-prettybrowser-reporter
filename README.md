@@ -29,11 +29,13 @@ module.exports = function(config) {
   config.set({
     reporters: ['progress', 'prettyBrowserReport'],
 
-    htmlReporter: {
+    browserReporter: {
       outputFile: 'tests/browser-uts.html',
 			
       // Optional
-      pageTitle: 'Browser Unit Tests'
+      pageTitle: 'Browser Unit Tests',
+      showPassed: false, // default: false
+      showFailedFirst: true // default: true
     }
   });
 };
