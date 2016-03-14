@@ -44,17 +44,17 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
       head.ele('meta', {charset: 'utf-8'});
       head.ele('title', {}, title);
       head.ele('link', {rel: 'stylesheet', type: 'text/css', href: cssFile}, '');
-      head.ele('script', {type:'text/javascript', src: 'http://code.jquery.com/jquery-1.4.2.js'}, '');
-      head.ele('script', {type:'text/javascript', src: jsFile}, '');
+      head.ele('script', {type:'text/javascript', src: 'http://code.jquery.com/jquery-1.4.2.js'}, '//empty');
+      head.ele('script', {type:'text/javascript', src: jsFile}, '//empty');
       body = html.ele('body');
       body.ele('h1', {}, title);
     }
   };
 
   var printSuites = function() {
-    browserPies = body.ele('div', {id: 'browserPies'});
-    generalLeft = browserPies.ele('div', {id: 'browserPiesLeft'}, '');
-    generalRight = browserPies.ele('div', {id: 'browserPiesRight'}, '');
+    //browserPies = body.ele('div', {id: 'browserPies'});
+    //generalLeft = browserPies.ele('div', {id: 'browserPiesLeft'}, '');
+    //generalRight = browserPies.ele('div', {id: 'browserPiesRight'}, '');
 
     browsersSide = body.ele('div', {id: 'browsersTable'});
     
