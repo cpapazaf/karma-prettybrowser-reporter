@@ -10,7 +10,7 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
   var outputFile = config.outputFile;
   var title = config.title || 'Browser Test Results';
   var showPassed = config.showPassed || false;
-  var showFailedFirst = config.showFailedFirst || true;
+  var showFailedFirst = config.showFailedFirst || false;
 
   var cssFile = 'karma-prettybrowser-reporter.css';
   var jsFile = 'karma-prettybrowser-reporter.js';
@@ -109,14 +109,15 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
     var green = [];
     for (var spec in specs) {
       if(specs[spec].skipped) {
-        yellow.push(spec);
+        yellow.push(specs[spec]);
       } else if (specs[spec].success) {
-        green.push(spec);
+        green.push(specs[spec]);
       } else {
-        red.push(spec);
+        red.push(specs[spec]);
       }
     }
-    return red.push.apply(red, yellow, green);
+
+    return red.concat(yellow).concat(green);
   }
 
   this.adapters = [function(msg) {
