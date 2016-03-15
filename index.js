@@ -78,7 +78,7 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
 
       // If there is some error do not show any specs
       if(browserInfo.disconnected || browserInfo.error){
-        return;
+        continue;
       }
 
       var browser_row_specs = browserTable.ele('tr', {});
