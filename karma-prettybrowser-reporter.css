@@ -34,7 +34,6 @@ body {
 	height:30px;
 }
 
-
 h1 {
 
 }
@@ -71,6 +70,11 @@ tr.skip td {
 tr.fail td {
 	color:#5e0e00;
 	background:#ff9c8a;
+}
+
+tr.error td {
+	color:#5e0e00;
+	background:#858484;
 }
 
 td {

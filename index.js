@@ -67,7 +67,7 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
 
     for (var browserId in suites) {
       var browserInfo = suites[browserId];
-      var browserFail = (browserInfo.success ? (browserInfo.skipped ? 'skip' : 'pass') : 'fail');
+      var browserFail = browserInfo.failed > 0 ? 'fail' : browserInfo.skipped > 0 ? 'skip': browserInfo.disconnected || browserInfo.error? 'error' : 'pass';
       var browser_row = browserTable.ele('tr', {class:browserFail, id:browserId});
       browser_row.ele('td', {}, browserInfo.browserName);
       
@@ -76,8 +76,14 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
         browser_row.ele('td', {align:'center'}, item); 
       });
 
+      // If there is some error do not show any specs
+      if(browserInfo.disconnected || browserInfo.error){
+        return;
+      }
+
       var browser_row_specs = browserTable.ele('tr', {});
       var specs_table_row = browser_row_specs.ele('td', {colspan:"6", class:'spec'});
+
       var space_table = specs_table_row.ele('table',{cellspacing:'0', cellpadding:'0', border:'0', class:'specs', id:browserId});
       
       var specs = browserInfo.specs;
