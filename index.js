@@ -67,7 +67,7 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
 
     for (var browserId in suites) {
       var browserInfo = suites[browserId];
-      var browserFail = browserInfo.failed > 0 ? 'fail' : browserInfo.skipped > 0 ? 'skip': browserInfo.disconnected || browserInfo.error? 'error' : 'pass';
+      var browserFail = browserInfo.failed > 0 ? 'fail' : browserInfo.disconnected || browserInfo.error ? 'error'  : 'pass';
       var browser_row = browserTable.ele('tr', {class:browserFail, id:browserId});
       browser_row.ele('td', {}, browserInfo.browserName);
       
@@ -102,7 +102,7 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
         var col = space_table_row.ele('td', {}, specs[spec].description);
         if (!specs[spec].success) {
           specs[spec].errorLog.forEach(function(err) {
-            col.raw('<br />' + formatError(err).replace(/</g,'&lt;').replace(/>/g,'&gt;'));
+            col.raw('<br/><hr/>' + formatError(err).replace(/</g,'&lt;').replace(/>/g,'&gt;'));
           });
         }
       }
