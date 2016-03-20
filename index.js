@@ -39,15 +39,23 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
   };
 
   var htmlHelpers = {
-    initialize: function() {
+    initialize: function(browserFail, browserPass, browserError) {
       var head = html.ele('head');
       head.ele('meta', {charset: 'utf-8'});
       head.ele('title', {}, title);
       head.ele('link', {rel: 'stylesheet', type: 'text/css', href: cssFile}, '');
       head.ele('script', {type:'text/javascript', src: 'http://code.jquery.com/jquery-1.4.2.js'}, '//empty');
       head.ele('script', {type:'text/javascript', src: jsFile}, '//empty');
+      head.ele('script', {type:'text/javascript', src: 'https://code.highcharts.com/highcharts.js'}, '//empty');
+      head.ele('script', {type:'text/javascript'}, 'var bPass='+browserPass+';var bFail='+browserFail+';var bError='+browserError+';');
       body = html.ele('body');
       body.ele('h1', {}, title);
+      var statsTable = body.ele('table', {class: 'stats'});
+      var statsTableTr = statsTable.ele('tr', {});
+      var statsTableTdBpfc = statsTableTr.ele('td', {});
+      statsTableTdBpfc.ele('dev', {id: "browser-pass-fail-container", style: "min-width: 310px; height: 200px; max-width: 600px; margin: 0 auto"});
+      var statsTableTdBpc = statsTableTr.ele('td', {});
+      statsTableTdBpc.ele('dev', {id: "browser-platforms-container", style: "min-width: 310px; height: 200px; max-width: 600px; margin: 0 auto"});
     }
   };
 
@@ -135,8 +143,6 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
 
     html = builder.create('html', null, 'html', { headless: true });
     html.doctype();
-
-    htmlHelpers.initialize();
   };
   
   this.onBrowserStart = function (browser) {
@@ -163,6 +169,29 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
   this.onRunComplete = function() {
     log.debug('onRunComplete');
     log.debug(suites);
+
+    var browserFail = 0;
+    var browserPass = 0;
+    var browserError = 0;
+
+    for (var browserId in suites) {
+      var browserInfo = suites[browserId];
+      log.debug(browserInfo.failed + ' ' + browserInfo.error + ' ' + browserInfo.disconnected);
+      if(browserInfo.failed > 0){
+        browserFail = browserFail + 1; 
+      }else if(browserInfo.error || browserInfo.disconnected){
+        browserError = browserError + 1;
+      }else{
+        browserPass = browserPass+ 1;
+      }
+    }
+
+    log.debug(browserFail + ' ' + browserPass + ' ' + browserError);
+
+    var total = browserFail + browserPass + browserError;
+
+    htmlHelpers.initialize(browserFail/total, browserPass/total, browserError/total);
+
     printSuites();
     
     var htmlToOutput = html;
