@@ -40,11 +40,11 @@ $(function () {
             colorByPoint: true,
             data: [{
                 name: 'Fail',
-                y: bPass*100,
+                y: bFail*100,
                 color: '#FF0000'
             },{
                 name: 'Pass',
-                y: bFail*100,
+                y: bPass*100,
                 sliced: false,
                 selected: true,
                 color: '#00A000'
