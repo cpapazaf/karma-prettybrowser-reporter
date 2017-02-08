@@ -2,8 +2,7 @@ karma-prettybrowser-reporter
 =======================
 
 [![NPM](https://nodei.co/npm/karma-prettybrowser-reporter.png?compact=true)](https://npmjs.org/package/karma-prettybrowser-reporter)
-
-
+[![Build Status](https://travis-ci.org/cpapazaf/karma-prettybrowser-reporter.svg?branch=master)](https://travis-ci.org/cpapazaf/karma-prettybrowser-reporter)
 
 ## A karma plugin for exporting unit test results in a pretty HTML format.
 
