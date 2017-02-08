@@ -1,0 +1,9 @@
+deploy:
+  provider: npm
+  email: xpapazaf@gmail.com
+  api_key:
+    secure: ju+2VbURehpHvspH0L5biyDaQQytDcXgqnpH/Q/y8Hvz2f0doyTfopZfjh8NU8EIuGHMNoC1M1SOPdNsshntDACAsJqmqYXZDMEjxDW4fTOorcqfiryi13GkoKNJpKKj6dvNwU3BQL2vc0pbPfNBiyb2lIhyuXSrvWyWdecSNdijQ4Qfo1Fkyswgr1hLP8eBQSp8qkp4fmY3/ntC0kUSLlc3P15RA1VTVeOuIt7Mvl4FDDmQ4u5K4Mr/mYWOHy0hpuI3U/NkbmBL7K0EiXlv7od8iq4xcB2HGT5CwHeq94bcSKdgVkJ/bjftrOoptLPqXHkFh0rnrszewvFU7u+9Ppdi5LLkHAKLMtmGRLNaFuE2TgBSMmgwFT44H/R/tHhXqGvG7X9X4GL5W5qpevJhre75KT150SjwVvfyMgkxI6DyKC55GId6pImcam0ZuSL/mfdPGGKwrkHHPVn9+aq8NJQoSPQYVI6nsWIlHelQjp181OD9vBfxw7pnVU5BGUIEd8VEJdX+F6jSEYNGBiMerIKFX5iRwrPLSm9k5NhuaIsTTQcNba+VPRXqpqGH0vW5i2ReeEaqxTzvSlQVRKzM/q5MglT06H3I2tSGCqp7nW4LIfDVVGwH7DR7lcIdtfasN0vZt1DiZ6P0ty0RiAsKbiOp1IYHr2D4XVP4Q8+ySwQ=
+  on:
+    tags: true
+    branch: master
+    repo: cpapazaf/karma-prettybrowser-reporter
