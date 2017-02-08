@@ -1,6 +1,10 @@
 karma-prettybrowser-reporter
 =======================
 
+[![NPM](https://nodei.co/npm/karma-prettybrowser-reporter.png?compact=true)](https://npmjs.org/package/karma-prettybrowser-reporter)
+
+
+
 ## A karma plugin for exporting unit test results in a pretty HTML format.
 
 This is a plugin for the [Karma Test Runner]. By adding this reporter to your karma configuration, unit test results will be exported as a styled HTML file. For each test browser, a separate table is generated. The plugin is  based on the [karma-junit-reporter plugin] and the [karma-htmlfile-reporter plugin].
