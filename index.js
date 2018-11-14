@@ -44,7 +44,7 @@ var BrowserReporter = function(baseReporterDecorator, config, emitter, logger, h
       head.ele('meta', {charset: 'utf-8'});
       head.ele('title', {}, title);
       head.ele('link', {rel: 'stylesheet', type: 'text/css', href: cssFile}, '');
-      head.ele('script', {type:'text/javascript', src: 'http://code.jquery.com/jquery-1.4.2.js'}, '//empty');
+      head.ele('script', {type:'text/javascript', src: 'https://code.jquery.com/jquery-1.4.2.min.js'}, '//empty');
       head.ele('script', {type:'text/javascript', src: jsFile}, '//empty');
       head.ele('script', {type:'text/javascript', src: 'https://code.highcharts.com/highcharts.js'}, '//empty');
       head.ele('script', {type:'text/javascript'}, 'var bPass='+browserPass+';var bFail='+browserFail+';var bError='+browserError+';');
